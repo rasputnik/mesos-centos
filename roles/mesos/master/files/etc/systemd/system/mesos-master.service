@@ -1,0 +1,9 @@
+[Unit]
+Description=Mesos Master
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/mesos-init-wrapper master
+
+[Install]
+WantedBy=multi-user.target

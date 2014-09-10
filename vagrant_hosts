@@ -1,0 +1,22 @@
+# co-locate zookeepers on masters
+# to save memory footprint - split out for prod.
+[zookeepers]
+mesos-master1
+
+[mesos_slaves]
+mesos-slave1
+mesos-slave2
+
+[mesos_masters]
+mesos-master1
+
+[all:vars]
+
+# connection details
+ansible_ssh_user=vagrant
+ansible_ssh_private_key_file=~/.vagrant.d/insecure_private_key
+
+java7_rpm=java-1.7.0-openjdk-headless
+
+# where to run your services (needed for Mesos)
+service_interface=ansible_enp0s8

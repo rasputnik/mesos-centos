@@ -1,0 +1,20 @@
+
+- name: configure slave
+  template: src=.{{ item }}.j2  dest={{ item }}
+            mode=0444
+  with_items:
+    - /etc/mesos-slave/work_dir
+    - /etc/mesos-slave/ip
+# as soon as Docker > 1.0 hits we can get this enabled
+#    - /etc/mesos-slave/containerizers
+  notify: bounce mesos
+
+- name: mesos slave systemd unit
+  copy: src=etc/systemd/system/mesos-slave.service
+        dest=/etc/systemd/system/mesos-slave.service
+  notify:
+    - refresh systemd
+    - bounce mesos
+
+- name: mesos slave service
+  service: name=mesos-slave state=running enabled=yes

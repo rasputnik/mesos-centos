@@ -1,0 +1,20 @@
+
+- name: mesos master systemd unit
+  copy: src=etc/systemd/system/mesos-master.service
+        dest=/etc/systemd/system/mesos-master.service
+  notify:
+    - refresh systemd
+    - bounce mesos
+
+- name: configure master
+  template: src=.{{ item }}.j2  dest={{ item }}
+            mode=0444
+  with_items:
+    - /etc/mesos-master/work_dir
+    - /etc/mesos-master/quorum
+    - /etc/mesos-master/registry
+    - /etc/mesos-master/ip
+  notify: bounce mesos
+
+- name: mesos master service
+  service: name=mesos-master state=running enabled=yes

@@ -1,0 +1,17 @@
+---
+
+- hosts: mesos_masters
+  sudo: yes
+  roles:
+    - mesos/master
+
+- hosts: mesos_slaves
+  sudo: yes
+  roles:
+    - mesos/slave
+
+- hosts: zookeepers
+  sudo: yes
+  roles:
+    - jvm
+    - zookeeper

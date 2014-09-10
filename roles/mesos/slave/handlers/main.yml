@@ -1,0 +1,2 @@
+- name: bounce mesos
+  service: name=mesos-slave state=restarted

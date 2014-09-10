@@ -1,0 +1,9 @@
+[Unit]
+Description=Mesos Slave
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/mesos-init-wrapper slave
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,7 @@
+---
+
+- name: mesosphere RPM repo
+  copy: src=.{{ item }} dest={{ item }} mode=0444
+  with_items:
+    - /etc/pki/rpm-gpg/RPM-GPG-KEY-mesosphere
+    - /etc/yum.repos.d/mesosphere.repo

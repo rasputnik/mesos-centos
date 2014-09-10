@@ -1,0 +1,4 @@
+---
+
+- name: install java 7
+  yum: state=present name={{java7_rpm}}

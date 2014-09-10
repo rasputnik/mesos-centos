@@ -1,0 +1,23 @@
+---
+
+- include: repo.yml
+
+- name: install mesos RPM
+  yum: name={{ item }} state=present
+  with_items:
+    - "{{ mesos_rpm }}"
+    - cyrus-sasl
+  notify: bounce mesos
+
+- name: symlink libsasl.so2 -> libsasl.so.3
+  file: name=/lib64/libsasl2.so.2
+        src=/lib64/libsasl2.so.3
+        state=link
+
+- name: mesos work dir
+  file: path={{ mesos_work_dir }} state=directory
+
+- name: setup zookeeper config
+  template: src=etc/mesos/zk.j2 dest=/etc/mesos/zk
+            mode=0444
+  notify: bounce mesos
