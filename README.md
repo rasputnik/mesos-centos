@@ -11,7 +11,8 @@ CentOS7 core (from https://github.com/rasputnik/centos7-packer)
 
 * the centos base image above
 * Ansible on your host machine
-* 2 Vagrant plugins (see below)
+* Vagrant 1.6.4 or better is needed to support EL7 networking.
+* a Vagrant plugin (see below)
 
 ## assumptions
 
@@ -26,15 +27,9 @@ in there need to match your Vagrantfile.
 
 Vagrant box used is [my centos7 box](https://github.com/rasputnik/centos7-packer).
 
-    packer build centos7.json
-    vagrant box add centos7-core CentOS-7.0-1406-x86_64-v20140721-virtualbox.box
+We'll need name resolution, and /etc/hosts is nice and simple.
 
-The current version of Vagrant (1.6.3) doesn't support CentOS7 networking
-so apply [this plugin](https://github.com/vStone/vagrant-centos7_fix) to fix it.
-
-    vagrant plugin install vagrant-centos7_fix
-
-We'll also need name resolution. The [hostmanager plugin](https://github.com/smdahlen/vagrant-hostmanager)
+The [hostmanager plugin](https://github.com/smdahlen/vagrant-hostmanager)
 will auto-manage the VMs /etc/hosts files.
 
     vagrant plugin install vagrant-hostmanager
