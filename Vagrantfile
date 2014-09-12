@@ -24,9 +24,7 @@ Vagrant.configure("2") do |config|
   hosts.each do |host|
     config.vm.define host[:name] do |c|
 
-      c.vm.box = "centos7-core"
-      c.vm.box_url =
-        "https://github.com/rasputnik/centos7-packer/releases/download/v0.1/CentOS-7.0-1406-x86_64-v20140721-virtualbox.box"
+      c.vm.box = "rasputnik/centos7.0-core"
 
       c.vm.hostname = host[:name]
 
