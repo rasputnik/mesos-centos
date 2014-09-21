@@ -27,6 +27,8 @@ in there need to match your Vagrantfile.
 
 Vagrant box used is [my centos7 box](https://github.com/rasputnik/centos7-packer).
 
+_(NB: you won't get a lot of RAM offered by the slaves. Mesos > 0.20.0 reserves 1Gb or half system RAM for the OS)_
+
 We'll need name resolution, and /etc/hosts is nice and simple.
 
 The [hostmanager plugin](https://github.com/smdahlen/vagrant-hostmanager)
