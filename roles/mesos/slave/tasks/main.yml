@@ -5,8 +5,7 @@
   with_items:
     - /etc/mesos-slave/work_dir
     - /etc/mesos-slave/ip
-# as soon as Docker > 1.0 hits we can get this enabled
-#    - /etc/mesos-slave/containerizers
+    - /etc/mesos-slave/isolation
   notify: bounce mesos
 
 - name: mesos slave systemd unit

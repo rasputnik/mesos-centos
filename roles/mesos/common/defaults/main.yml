@@ -1,1 +1,7 @@
+# needed by masters and slaves (since 0.19)
 mesos_work_dir: /var/mesos
+
+# slave specific
+mesos_isolation: posix/cpu,posix/mem
+# this won't work until MESOS-1195 is fixed
+#mesos_isolation: cgroups/cpu,cgroups/mem
