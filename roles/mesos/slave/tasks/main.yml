@@ -6,6 +6,7 @@
     - /etc/mesos-slave/work_dir
     - /etc/mesos-slave/ip
     - /etc/mesos-slave/isolation
+    - /etc/mesos-slave/switch_user
   notify: bounce mesos
 
 - name: mesos slave systemd unit

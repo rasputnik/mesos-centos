@@ -5,3 +5,7 @@ mesos_work_dir: /var/mesos
 mesos_isolation: posix/cpu,posix/mem
 # this won't work until MESOS-1195 is fixed
 #mesos_isolation: cgroups/cpu,cgroups/mem
+
+# without this mesos will run as users based
+# on who submitted the task. can be confusing. 
+mesos_switch_user: "false" # not 'python' false
