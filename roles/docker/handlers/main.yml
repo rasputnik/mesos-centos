@@ -1,0 +1,3 @@
+---
+- name: bounce docker
+  service: name=docker state=restarted
