@@ -22,7 +22,7 @@ CentOS7 core (from https://github.com/rasputnik/centos7-packer)
 
 ## Vagrant setup
 
-an inventory for Vagrant is in *vagrant_hosts*, the hostnames
+an inventory for Vagrant is in *vagrant/hosts*, the hostnames
 in there need to match your Vagrantfile.
 
 Vagrant box used is [my centos7 box](https://github.com/rasputnik/centos7-packer).
@@ -44,7 +44,7 @@ _NB: this will also (try to) edit your local /etc/hosts_
 
 run the main play with:
 
-    ansible-playbook -i vagrant_hosts site.yml
+    ansible-playbook -i vagrant/ site.yml
 
 If you add/destroy vagrant VMs, the 'vagrant up' should
 auto-manage your local /etc/hosts along with existing VMs. If you
