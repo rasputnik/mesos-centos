@@ -4,7 +4,10 @@ After=network.target
 
 [Service]
 ExecStart=/usr/bin/mesos-init-wrapper slave
-Restart=on-failure
+# slaves occassionally need a couple of tries to rejoin
+Restart=always
+# but if it's not back after a few tries, it's not going to fix itself
+StartLimitBurst=3
 
 [Install]
 WantedBy=multi-user.target
