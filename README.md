@@ -1,7 +1,10 @@
 Mesos cluster
 =============
 
-CentOS 7 based Mesos cluster.
+CentOS 7 based Mesos cluster. Intended to be a clean baseline
+for framework testing.
+
+See examples/ for some ways to run frameworks against this stack.
 
 ## base OS
 
