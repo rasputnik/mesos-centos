@@ -1,0 +1,15 @@
+---
+- name: install docker
+  yum: name=docker state=present
+
+- name: get latest docker binary so mesos works
+  get_url: url=https://get.docker.io/builds/Linux/x86_64/docker-latest
+           dest=/usr/bin/docker.latest
+
+- name: symlink to latest binary
+  file: src=/usr/bin/docker.latest dest=/usr/bin/docker state=link
+        owner=root group=root mode=0755 force=yes
+  notify: bounce docker
+
+- name: start docker service
+  service: name=docker state=started enabled=yes
