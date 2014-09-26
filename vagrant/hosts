@@ -1,14 +1,14 @@
 # co-locate zookeepers on masters
 # to save memory footprint - split out for prod.
 [zookeepers]
-mesos-master1
+master1
 
 [mesos_slaves]
-mesos-slave1
-mesos-slave2
+slave1
+slave2
 
 [mesos_masters]
-mesos-master1
+master1
 
 [all:vars]
 
