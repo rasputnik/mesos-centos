@@ -4,6 +4,8 @@ Mesos cluster
 CentOS 7 based Mesos cluster. Intended to be a clean baseline
 for framework testing.
 
+Currently 0.20.0 with docker support.
+
 See examples/ for some ways to run frameworks against this stack.
 
 ## base OS
