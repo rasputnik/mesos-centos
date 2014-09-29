@@ -3,5 +3,5 @@ mesos_work_dir: /var/mesos
 
 # slave specific
 mesos_isolation: posix/cpu,posix/mem
-# this won't work until MESOS-1195 is fixed
+# broken until MESOS-1195 is fixed (in 0.21.0 ?)
 #mesos_isolation: cgroups/cpu,cgroups/mem
