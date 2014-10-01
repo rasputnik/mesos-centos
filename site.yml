@@ -1,11 +1,11 @@
 ---
 
-- hosts: mesos_masters
+- hosts: masters
   sudo: yes
   roles:
     - mesos/master
 
-- hosts: mesos_slaves
+- hosts: slaves
   sudo: yes
   roles:
     - mesos/slave

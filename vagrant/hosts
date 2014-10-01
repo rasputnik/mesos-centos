@@ -3,11 +3,11 @@
 [zookeepers]
 master1
 
-[mesos_slaves]
+[slaves]
 slave1
 slave2
 
-[mesos_masters]
+[masters]
 master1
 
 [all:vars]
