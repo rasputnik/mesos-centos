@@ -13,5 +13,4 @@
 - hosts: zookeepers
   sudo: yes
   roles:
-    - jvm
     - zookeeper
