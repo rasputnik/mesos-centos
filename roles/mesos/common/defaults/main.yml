@@ -1,6 +1,9 @@
 # needed by masters and slaves (since 0.19)
 mesos_work_dir: /var/mesos
 
+# inventory group holding zookeepers
+mesos_zk_group: zookeepers
+
 # slave specific
 mesos_isolation: posix/cpu,posix/mem
 # broken until MESOS-1195 is fixed (in 0.21.0 ?)
