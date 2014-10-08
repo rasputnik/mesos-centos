@@ -1,5 +1,5 @@
 {
-  "id": "toggle",
+  "id": "http-health",
   "cmd": "python toggle.py $PORT0",
   "cpus": 0.2,
   "disk": 0.0,

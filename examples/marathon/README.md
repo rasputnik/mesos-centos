@@ -53,10 +53,10 @@ then we map that host port to a global app port with the usual:
 
 curl -XPUT http://localhost:8080/v2/apps/redis -d '{ "instances": "3" }' -H "Content-type: application/json"
 
-# HTTP healthchecks
+# healthchecks
 
 This sample app responds to the configured healthcheck with a 200. A 'GET /toggle' will flip it between
 passing and failing). Click the app to get little traffic lights showing health or otherwise.
 
-    curl -X POST -H "Content-Type: application/json" http://localhost:8080/v2/apps -d@toggle-healthchecks.json
+    curl -X POST -H "Content-Type: application/json" http://localhost:8080/v2/apps -d@http-health.json
 
