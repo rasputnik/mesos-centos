@@ -24,7 +24,7 @@ Vagrant.configure("2") do |config|
   hosts.each do |host|
     config.vm.define host[:name] do |c|
 
-      c.vm.box = "rasputnik/centos7.0-core"
+      c.vm.box = "box-cutter/centos65"
 
       c.vm.hostname = host[:name]
 

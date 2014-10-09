@@ -11,12 +11,8 @@
     - /etc/mesos-slave/switch_user
   notify: bounce mesos
 
-- name: mesos slave systemd unit
-  copy: src=etc/systemd/system/mesos-slave.service
-        dest=/etc/systemd/system/mesos-slave.service
-  notify:
-    - refresh systemd
-    - bounce mesos
-
 - name: mesos slave service
   service: name=mesos-slave state=running enabled=yes
+
+- name: lose mesos-master upstart script
+  file: name=/etc/init/mesos-master.conf state=absent

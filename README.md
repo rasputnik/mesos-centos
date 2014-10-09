@@ -1,7 +1,7 @@
 Mesos cluster
 =============
 
-CentOS 7 based Mesos cluster. Intended to be a clean baseline
+CentOS 6 based Mesos cluster. Intended to be a clean baseline
 for framework testing.
 
 Currently 0.20.1 with docker bridged networking support
@@ -11,7 +11,7 @@ See examples/ for some ways to run frameworks against this stack.
 
 ## base OS
 
-CentOS7 core (from https://github.com/rasputnik/centos7-packer)
+CentOS 6.5 x64 (from https://github.com/box-cutter/centos-vm )
 
 ## requirements
 

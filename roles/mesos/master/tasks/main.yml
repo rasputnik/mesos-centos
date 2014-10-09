@@ -1,11 +1,4 @@
 
-- name: mesos master systemd unit
-  copy: src=etc/systemd/system/mesos-master.service
-        dest=/etc/systemd/system/mesos-master.service
-  notify:
-    - refresh systemd
-    - bounce mesos
-
 - name: configure master
   template: src=.{{ item }}.j2  dest={{ item }}
             mode=0444
@@ -18,3 +11,6 @@
 
 - name: mesos master service
   service: name=mesos-master state=running enabled=yes
+
+- name: lose mesos-slave upstart script
+  file: name=/etc/init/mesos-slave.conf state=absent
