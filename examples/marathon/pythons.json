@@ -4,5 +4,5 @@
   "mem": 30,
   "cpus": 0.1,
   "instances": 4,
-  "ports": [ 0 ] 
+  "ports": [ 22222 ]
 }
