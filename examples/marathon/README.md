@@ -11,12 +11,24 @@ get your tarball:
     curl -s http://downloads.mesosphere.io/marathon/v0.7.3/marathon-0.7.3.tgz | tar zxv
 
     export LIBPROCESS_IP=10.0.0.1 ## mac IP on the host network
-    ./marathon-0.7.3/bin/start --zk zk://master1:2181/marathon --master zk://master1:2181/mesos --ha --event_subscriber http_callback
+    ./marathon-0.7.3/bin/start --zk zk://master1:2181/marathon --master zk://master1:2181/mesos --ha --event_subscriber http_callback --task_launch_timeout 300
 
 ui is at:
 
      open http://localhost:8080/
 
+# HA testing
+
+All you'd have to do is run marathon out of the same directory N times and pass a new --http_port option i.e.
+
+    for port in 8080 8081 8082
+      do 
+        ./marathon-0.7.3/bin/start --zk zk://master1:2181/marathon --master zk://master1:2181/mesos --ha --event_subscriber http_callback --http_port $port --task_launch_timeout 300 &
+      done
+
+After they spin up, you can treat any of them as a master - the other nodes just proxy to the master marathon.
+
+# deploying some apps
 basic date loop in a busybox image:
 
     curl -X POST -H "Content-Type: application/json" http://localhost:8080/v2/apps -d@bbdate.json
