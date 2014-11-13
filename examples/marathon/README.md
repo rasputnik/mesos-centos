@@ -1,5 +1,4 @@
-Wire a local marathon instance into a mesos stack
-(e.g. mesos-centos7).
+Wire a local marathon instance into a mesos stack (e.g. mesos-centos);
 saves cluttering the stack with frameworks.
 
 # OSX instructions
@@ -8,10 +7,14 @@ saves cluttering the stack with frameworks.
 
 get your tarball:
 
-    curl -s http://downloads.mesosphere.io/marathon/v0.7.3/marathon-0.7.3.tgz | tar zxv
+    export M_VER=0.7.5
+
+    curl -s http://downloads.mesosphere.io/marathon/v${M_VER}/marathon-${M_VER}.tgz | tar zxv
 
     export LIBPROCESS_IP=10.0.0.1 ## mac IP on the host network
-    ./marathon-0.7.3/bin/start --zk zk://master1:2181/marathon --master zk://master1:2181/mesos --ha --event_subscriber http_callback --task_launch_timeout 300
+    export ZK=zk://master1:2181
+    ./marathon-${M_VER}/bin/start --zk ${ZK}/marathon --master ${ZK}/mesos --event_subscriber http_callback \
+    --ha --checkpoint --task_launch_timeout 300
 
 ui is at:
 
@@ -23,7 +26,7 @@ All you'd have to do is run marathon out of the same directory N times and pass 
 
     for port in 8080 8081 8082
       do 
-        ./marathon-0.7.3/bin/start --zk zk://master1:2181/marathon --master zk://master1:2181/mesos --ha --event_subscriber http_callback --http_port $port --task_launch_timeout 300 &
+        ./marathon-${M_VER}/bin/start --zk ${ZK}/marathon --master ${ZK}/mesos --ha --event_subscriber http_callback --http_port $port --task_launch_timeout 300 &
       done
 
 After they spin up, you can treat any of them as a master - the other nodes just proxy to the master marathon.
