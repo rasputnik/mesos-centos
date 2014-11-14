@@ -4,17 +4,17 @@
 master1
 
 [slaves]
-slave1
-slave2
+slave[1:2]
 
 [masters]
 master1
+
+[mesos:children]
+masters
+slaves
 
 [all:vars]
 
 # connection details
 ansible_ssh_user=vagrant
 ansible_ssh_private_key_file=~/.vagrant.d/insecure_private_key
-
-# where to run your services (needed for Mesos)
-service_interface=ansible_eth1

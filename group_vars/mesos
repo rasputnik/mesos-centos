@@ -1,0 +1,3 @@
+mesos:
+  rpm: mesos-0.20.1
+  interface: ansible_eth1

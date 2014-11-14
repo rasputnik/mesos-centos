@@ -1,10 +1,7 @@
 ---
 
-- name: install mesos RPM and deps
-  yum: name={{ item }} state=present
-  with_items:
-    - "{{ mesos_rpm }}"
-    - cyrus-sasl
+- name: install mesos RPM
+  yum: name={{ mesos.rpm }} state=present
   notify: bounce mesos
 
 - name: mesos work dir
