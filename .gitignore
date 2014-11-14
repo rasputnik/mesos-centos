@@ -1,3 +1,4 @@
 .vagrant/
 callback_plugins/*.pyc
 ansible.cfg
+examples/marathon/marathon-*
