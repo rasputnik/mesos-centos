@@ -6,7 +6,6 @@
     - /etc/mesos-master/work_dir
     - /etc/mesos-master/quorum
     - /etc/mesos-master/registry
-    - /etc/mesos-master/ip
   notify: bounce mesos
 
 - name: mesos master service

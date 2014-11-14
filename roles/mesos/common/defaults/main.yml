@@ -1,6 +1,8 @@
 # needed by masters and slaves (since 0.19)
 mesos_work_dir: /var/mesos
-
+# default from RPM
+mesos_log_dir: /var/log/mesos
+mesos_maxfiles: 64000
 # inventory group holding zookeepers
 mesos_zk_group: zookeepers
 
