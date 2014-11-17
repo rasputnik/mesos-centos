@@ -13,6 +13,9 @@ master1
 masters
 slaves
 
+[mesos:vars]
+mesos_zk_group=zookeepers
+
 [all:vars]
 
 # connection details
