@@ -17,7 +17,7 @@ CentOS 6.5 x64 (from https://github.com/box-cutter/centos-vm )
 
 * the centos base image above
 * Ansible on your host machine
-* Vagrant 1.6.4 or better is needed to support EL7 networking.
+* Vagrant 1.6.4 or better
 * a Vagrant plugin (see below)
 
 ## assumptions
@@ -31,14 +31,11 @@ CentOS 6.5 x64 (from https://github.com/box-cutter/centos-vm )
 an inventory for Vagrant is in *vagrant/hosts*, the hostnames
 in there need to match your Vagrantfile.
 
-Vagrant box used is [my centos7 box](https://github.com/rasputnik/centos7-packer).
-
 _(NB: you won't get a lot of RAM offered by the slaves. Mesos > 0.20.0 reserves 1Gb or half system RAM for the OS)_
 
 We'll need name resolution, and /etc/hosts is nice and simple.
 
-The [hostmanager plugin](https://github.com/smdahlen/vagrant-hostmanager)
-will auto-manage the VMs /etc/hosts files.
+The [hostmanager plugin](https://github.com/smdahlen/vagrant-hostmanager) will auto-manage that.
 
     vagrant plugin install vagrant-hostmanager
 
