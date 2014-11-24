@@ -1,10 +1,10 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-## if you change these, change vagrant_hosts too
+## if you change these, change vagrant/hosts too
 #
 # would _dearly_ love to make this less clunkable,
-# and just read vagrant_hosts directly.
+# and just read vagrant/hosts directly.
 
 hosts = [
   {:name => "master1", :ip => "10.0.0.111",   :ram => 1024},
