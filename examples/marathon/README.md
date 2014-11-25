@@ -14,7 +14,10 @@ get your tarball:
     export LIBPROCESS_IP=10.0.0.1 ## mac IP on the host network
     export ZK=zk://master1:2181
     ./marathon-${M_VER}/bin/start --zk ${ZK}/marathon --master ${ZK}/mesos --event_subscriber http_callback \
-    --ha --checkpoint --task_launch_timeout 300
+    --ha --checkpoint --task_launch_timeout 300000
+
+NB: the --task_launch_timeout (in milliseconds) should match the slaves 
+--executor_registration_timeout option.
 
 ui is at:
 
