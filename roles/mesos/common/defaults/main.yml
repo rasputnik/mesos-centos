@@ -5,6 +5,7 @@ mesos_log_dir: /var/log/mesos
 mesos_maxfiles: 64000
 
 # slave specific
-mesos_isolation: posix/cpu,posix/mem
-# broken until MESOS-1195 is fixed (in 0.21.0 ?)
-#mesos_isolation: cgroups/cpu,cgroups/mem
+
+# experimental: swap for the commented one if need be
+mesos_isolation: cgroups/cpu,cgroups/mem
+#mesos_isolation: posix/cpu,posix/mem
