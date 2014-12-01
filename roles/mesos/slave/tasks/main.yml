@@ -3,11 +3,12 @@
   template: src=.{{ item }}.j2  dest={{ item }}
             mode=0444
   with_items:
-    - /etc/mesos-slave/work_dir
-    - /etc/mesos-slave/isolation
+    - /etc/mesos-slave/cgroups_enable_cfs
     - /etc/mesos-slave/containerizers
     - /etc/mesos-slave/executor_registration_timeout
+    - /etc/mesos-slave/isolation
     - /etc/mesos-slave/switch_user
+    - /etc/mesos-slave/work_dir
   notify: bounce mesos
 
 - name: mesos slave service

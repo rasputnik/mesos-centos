@@ -6,6 +6,8 @@ mesos_maxfiles: 64000
 
 # slave specific
 
-# experimental: swap for the commented one if need be
 mesos_isolation: cgroups/cpu,cgroups/mem
-#mesos_isolation: posix/cpu,posix/mem
+
+# or 'true' - don't use 'bare' bools!
+mesos_switch_user: "false"
+mesos_cgroups_enable_cfs: "true"
