@@ -7,7 +7,7 @@ saves cluttering the stack with frameworks.
 
 get your tarball:
 
-    export M_VER=0.7.5
+    export M_VER=0.7.6
 
     curl -s http://downloads.mesosphere.io/marathon/v${M_VER}/marathon-${M_VER}.tgz | tar zxv
 
