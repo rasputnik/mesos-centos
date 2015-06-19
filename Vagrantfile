@@ -26,6 +26,9 @@ Vagrant.configure("2") do |config|
 
       c.vm.box = "box-cutter/centos65"
 
+      # stop Vagrant 'helping'
+      c.ssh.insert_key = false
+
       c.vm.hostname = host[:name]
 
       c.vm.network :private_network, ip: host[:ip], netmask: "255.255.255.0"
