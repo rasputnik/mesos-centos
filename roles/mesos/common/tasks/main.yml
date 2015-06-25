@@ -1,7 +1,7 @@
 ---
 
 - name: install mesos RPM
-  yum: name={{ mesos.rpm }} state=present
+  yum: name={{ mesos_rpm }} state=present
   notify: bounce mesos
 
 - name: mesos work dir

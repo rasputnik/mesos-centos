@@ -1,3 +1,3 @@
 LOGS={{ mesos_log_dir }}
 ULIMIT="-n {{ mesos_maxfiles }}"
-IP={{ hostvars[inventory_hostname][mesos.interface].ipv4.address }}
+IP={{ hostvars[inventory_hostname][mesos_interface].ipv4.address }}
