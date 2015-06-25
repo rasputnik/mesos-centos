@@ -1,4 +1,8 @@
 ---
+
+- name: get latest event mapper libs
+  yum: name=device-mapper-event-libs state=latest
+
 - name: install docker
   yum: name=docker-io state=present
 
