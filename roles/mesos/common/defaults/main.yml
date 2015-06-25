@@ -10,4 +10,5 @@ mesos_isolation: cgroups/cpu,cgroups/mem
 
 # or 'true' - don't use 'bare' bools!
 mesos_switch_user: "false"
-mesos_cgroups_enable_cfs: "true"
+# CFS = 'hard limits'. if off, it's burstable
+mesos_cgroups_enable_cfs: "false"
