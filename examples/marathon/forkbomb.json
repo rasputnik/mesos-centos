@@ -1,0 +1,7 @@
+{
+  "id": "forkbomb",
+  "cmd": "x=`yes`",
+  "mem": 120,
+  "cpus": 0.1,
+  "instances": 1
+}

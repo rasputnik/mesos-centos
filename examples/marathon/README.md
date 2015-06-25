@@ -80,3 +80,19 @@ passing and failing). Click the app to get little traffic lights showing health 
 
     curl -X POST -H "Content-Type: application/json" http://localhost:8080/v2/apps -d@http-health.json
 
+# cgroups isolation
+
+NB: DONT RUN THIS UNLESS CGROUPS IS ENFORCED!
+
+    curl -X POST -H "Content-Type: application/json" http://localhost:8080/v2/apps -d@forkbomb.json
+
+jobs will launch, then be killed as the script leaks like a sieve.
+You'll see some useful output in slave logs of memory counters as the cgroup holding the forkbomb task
+is destroyed.
+
+more usefully, the master stats endpoint keeps track of memory limit trigged killed tasks:
+
+    curl -s master1:5050/metrics/snapshot | jq . | grep memory_limit
+
+
+haven't found anything useful in slave metrics to flag it up.
