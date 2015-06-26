@@ -1,0 +1,6 @@
+[draios]
+name=Draios
+baseurl=http://download.draios.com/stable/rpm/$basearch
+enabled=1
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/DRAIOS-GPG-KEY.public

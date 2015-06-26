@@ -1,0 +1,9 @@
+---
+
+# NB: this upgrades kernel too, so a reboot
+# is probably a good idea
+
+- hosts: all
+  sudo: yes
+  roles:
+    - sysdig

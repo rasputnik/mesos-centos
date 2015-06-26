@@ -1,0 +1,4 @@
+---
+dependencies:
+  - { role: repo/draios }
+  - { role: repo/epel6 }

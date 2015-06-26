@@ -1,0 +1,14 @@
+
+- name: install latest kernel
+  yum: name=kernel state=latest
+
+- name: install correct kernel gubbins for building sysdig module
+  yum: name=kernel-devel-{{ ansible_kernel }} state=present
+
+- name: install sysdig userland tools
+  yum: name=sysdig state=present
+
+# if you want to use it you need to:
+#
+# sudo sysdig-probe-loader
+# sudo sysdig $your-magic-cli
