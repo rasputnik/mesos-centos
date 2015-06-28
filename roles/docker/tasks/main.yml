@@ -1,10 +1,8 @@
 ---
 
-- name: get latest event mapper libs
-  yum: name=device-mapper-event-libs state=latest
-
-- name: install docker
-  yum: name=docker-io state=present
+- name: install {{ docker_rpm }}
+  yum: name={{ docker_rpm }} state=present
+  notify: bounce docker
 
 - name: start docker service
   service: name=docker state=started enabled=yes
