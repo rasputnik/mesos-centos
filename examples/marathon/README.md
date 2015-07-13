@@ -96,3 +96,10 @@ more usefully, the master stats endpoint keeps track of memory limit trigged kil
 
 
 haven't found anything useful in slave metrics to flag it up.
+
+# disk isolation
+
+marathon supports a 'disk' field in app. json , but it's not passed
+on to mesos.
+
+This changes as of marathon 0.9.0; will update here as we test it.
