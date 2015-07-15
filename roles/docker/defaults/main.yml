@@ -1,3 +1,4 @@
 ---
 
-docker_rpm: docker-io-1.5.0
+docker_rpm: docker-engine-1.7.1-1.el6.x86_64.rpm
+docker_rpm_url: https://get.docker.com/rpm/1.7.1/centos-6/RPMS/x86_64/{{ docker_rpm }}

@@ -1,7 +1,11 @@
 ---
 
+- name: download {{ docker_rpm }} from {{ docker_rpm_url }}
+  get_url: url={{ docker_rpm_url }}
+           dest=/root/{{ docker_rpm }}
+
 - name: install {{ docker_rpm }}
-  yum: name={{ docker_rpm }} state=present
+  yum: name=/root/{{ docker_rpm }}
   notify: bounce docker
 
 - name: start docker service
