@@ -1,11 +1,5 @@
 ---
 
-- hosts: all
-  sudo: yes
-  tasks:
-    - name: ansible prerequisites
-      yum: name=libselinux-python state=present
-
 # masters up first, since they
 # should be upgraded before slaves
 
