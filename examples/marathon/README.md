@@ -39,15 +39,15 @@ After they spin up, you can treat any of them as a master - the other nodes just
 # deploying some apps
 basic date loop in a busybox image:
 
-    curl -X POST -H "Content-Type: application/json" http://localhost:8080/v2/apps -d@bbdate.json
+    curl -X PUT -H "Content-Type: application/json" http://localhost:8080/v2/apps/bbdate -d@bbdate.json
 
 try a docker image with networking:
 
-    curl -X POST -H "Content-Type: application/json" http://localhost:8080/v2/apps -d@redis.json
+    curl -X PUT -H "Content-Type: application/json" http://localhost:8080/v2/apps/redis -d@redis.json
 
 check we can run 'vanilla' executors (i.e. not dockerized)
 
-    curl -X POST -H "Content-Type: application/json" http://localhost:8080/v2/apps -d@pythons.json
+    curl -X PUT -H "Content-Type: application/json" http://localhost:8080/v2/apps/pythons -d@pythons.json
 
 
 
@@ -71,20 +71,20 @@ then we map that host port to a global app port with the usual:
 
 ## scaling
 
-curl -XPUT http://localhost:8080/v2/apps/redis -d '{ "instances": "3" }' -H "Content-type: application/json"
+    curl -XPUT http://localhost:8080/v2/apps/redis -d '{ "instances": "3" }' -H "Content-type: application/json"
 
 # healthchecks
 
 This sample app responds to the configured healthcheck with a 200. A 'GET /toggle' will flip it between
 passing and failing). Click the app to get little traffic lights showing health or otherwise.
 
-    curl -X POST -H "Content-Type: application/json" http://localhost:8080/v2/apps -d@http-health.json
+    curl -X PUT -H "Content-Type: application/json" http://localhost:8080/v2/apps/http-health -d@http-health.json
 
 # cgroups isolation
 
 NB: DONT RUN THIS UNLESS CGROUPS IS ENFORCED!
 
-    curl -X POST -H "Content-Type: application/json" http://localhost:8080/v2/apps -d@forkbomb.json
+    curl -X PUT -H "Content-Type: application/json" http://localhost:8080/v2/apps/forkbomb -d@forkbomb.json
 
 jobs will launch, then be killed as the script leaks like a sieve.
 You'll see some useful output in slave logs of memory counters as the cgroup holding the forkbomb task
