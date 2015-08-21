@@ -17,6 +17,7 @@ CentOS 6.5 x64 (from https://github.com/box-cutter/centos-vm )
 
 * the centos base image above
 * Ansible on your host machine
+* Virtualbox on host machine (box has 4.3.28 extensions)
 * Vagrant 1.6.4 or better
 * a Vagrant plugin (see below)
 
