@@ -6,11 +6,13 @@
 - hosts: masters
   sudo: yes
   roles:
+    - log/sink
     - mesos/master
 
 - hosts: slaves
   sudo: yes
   roles:
+    - log/fwd
     - mesos/slave
 
 - hosts: zookeepers

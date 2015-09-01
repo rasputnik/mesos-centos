@@ -18,6 +18,10 @@ mesos_zk_group=zookeepers
 
 [all:vars]
 
+# slaves CC syslog messages here 
+# (used by 'log/fwd' role, must match the node running 'log/sink' role)
+syslog_sink=master1
+
 # connection details
 ansible_ssh_user=vagrant
 ansible_ssh_private_key_file=~/.vagrant.d/insecure_private_key
