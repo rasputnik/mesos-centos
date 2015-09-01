@@ -2,3 +2,5 @@
 callback_plugins/*.pyc
 ansible.cfg
 examples/marathon/marathon-*
+examples/spark/spark-*
+examples/spark/derby.log
