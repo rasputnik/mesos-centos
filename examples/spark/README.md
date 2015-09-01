@@ -82,3 +82,11 @@ functionally the same.
     count = sc.parallelize(xrange(0, NUM_SAMPLES)).map(sample) \
                  .reduce(lambda a, b: a + b)
     print "Pi is roughly %f" % (4.0 * count / NUM_SAMPLES)
+
+# monitoring
+
+The mesos task stderr gives a good feel of what's happening, you
+can also poke around the spark web UI at http://localhost:4040/ .
+
+In particular the 'event timeline' view ( http://localhost:4040/jobs/ )
+tells me the reduce() took all the time in that last run, as expected.
