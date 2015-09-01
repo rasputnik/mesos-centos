@@ -4,14 +4,14 @@ Mesos cluster
 CentOS 6 based Mesos cluster. Intended to be a clean baseline
 for framework testing.
 
-Currently 0.20.1 with docker bridged networking support
+Currently 0.22.1 with docker bridged networking support
 (see examples/marathon/ for details on using it).
 
-See examples/ for some ways to run frameworks against this stack.
+See frameworks/ for some ways to run frameworks against this stack.
 
 ## base OS
 
-CentOS 6.5 x64 (from https://github.com/box-cutter/centos-vm )
+CentOS 6.6 x64 (from https://github.com/box-cutter/centos-vm )
 
 ## requirements
 
@@ -59,7 +59,7 @@ need to ensure it's up to date, just run
 ## vars
 
 * role-specific vars live in $rolename/defaults/main.yml.
-* globals live in group_vars/all
+* globals live in group_vars/ - ideally per-group, not 'all'
 * 'environment' specific vars _(e.g. ansible_ssh_user)_ live in [all:vars] within the relevant inventory
 
 ### BUGS

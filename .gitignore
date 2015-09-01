@@ -1,6 +1,6 @@
 .vagrant/
 callback_plugins/*.pyc
 ansible.cfg
-examples/marathon/marathon-*
-examples/spark/spark-*
-examples/spark/derby.log
+frameworks/marathon/marathon-*
+frameworks/spark/spark-*
+frameworks/spark/derby.log
