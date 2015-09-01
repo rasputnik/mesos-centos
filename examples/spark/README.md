@@ -50,7 +50,7 @@ Once that comes back green (a good few minutes), we can actually launch a spark 
 
 We don't have HDFS setup yet so things won't be fully functional, but 
 we can at least verify things can be shipped out. 
-This example calculates pi by the 'throw darts and see what is within a circle' method.
+This Scala code calculates pi by the 'throw darts and see what is within a circle' method.
 Dial up NUM_SAMPLES for more accuracy (and longer run times, NUM_SAMPLES == a billion takes
 around 30 seconds for me):
 
@@ -62,3 +62,23 @@ around 30 seconds for me):
       if (x*x + y*y < 1) 1 else 0
     }.reduce(_ + _)
     println("Pi is roughly " + 4.0 * count / NUM_SAMPLES)
+
+The python version works too:
+
+    # fire up a shell to check it connects to cluster
+    ./spark-${VER}-bin-hadoop2.6/bin/pyspark
+
+This is (2-3x) slower than the Scala version, but
+functionally the same.
+
+    from random import random
+    
+    NUM_SAMPLES=10000
+    
+    def sample(p):
+        x, y = random(), random()
+        return 1 if x*x + y*y < 1 else 0
+    
+    count = sc.parallelize(xrange(0, NUM_SAMPLES)).map(sample) \
+                 .reduce(lambda a, b: a + b)
+    print "Pi is roughly %f" % (4.0 * count / NUM_SAMPLES)
