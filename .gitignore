@@ -4,3 +4,4 @@ ansible.cfg
 frameworks/marathon/marathon-*
 frameworks/spark/spark-*
 frameworks/spark/derby.log
+frameworks/jenkins/mesos-plugin
