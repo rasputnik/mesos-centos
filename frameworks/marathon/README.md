@@ -3,7 +3,7 @@ saves cluttering the stack with frameworks.
 
 # OSX instructions
 
-    # try to use the same version as the cluster has (see group_vars/mesos)
+    # try to use the same version as the cluster has ('mesos_rpm' in inventory).
 
     brew install mesos (for libmesos.dylib)
 

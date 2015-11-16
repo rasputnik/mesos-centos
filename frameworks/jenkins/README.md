@@ -1,6 +1,6 @@
 
     # checkout a version that matches our mesos slaves
-    # (see group_vars/mesos)
+    # (see inventory)
     brew install mesos
 
     git clone https://github.com/jenkinsci/mesos-plugin.git 

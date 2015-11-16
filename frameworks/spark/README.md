@@ -2,7 +2,7 @@ Run a mac Spark on the VM Mesos cluster.
 
 # get a spark distro onto your Mac
 
-    # ideally same as cluster version (see group_vars/mesos)
+    # ideally same as cluster version (see mesos_rpm in inventory)
     brew install mesos
 
     export VER=1.4.1

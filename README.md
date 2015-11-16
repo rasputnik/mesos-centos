@@ -58,9 +58,9 @@ need to ensure it's up to date, just run
 
 ## vars
 
-* role-specific vars live in $rolename/defaults/main.yml.
-* globals live in group_vars/ - ideally per-group, not 'all'
+* role-specific vars live in $rolename/defaults/main.yml
 * 'environment' specific vars _(e.g. ansible_ssh_user)_ live in [all:vars] within the relevant inventory
+  and override role defaults
 
 ### BUGS
 
