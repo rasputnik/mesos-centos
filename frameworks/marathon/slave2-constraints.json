@@ -1,0 +1,8 @@
+{
+  "cmd": "python -m SimpleHTTPServer $PORT",
+  "mem": 30,
+  "cpus": 0.1,
+  "instances": 4,
+  "ports": [ 22222 ],
+  "constraints": [["hostname", "LIKE", ".*2"]]
+}

@@ -97,6 +97,21 @@ more usefully, the master stats endpoint keeps track of memory limit trigged kil
 
 haven't found anything useful in slave metrics to flag it up.
 
+# targeting specific slaves
+
+Constraints are how you tell marathon which slave offers to accept.
+We haven't set any slave attributes, but we can use slave hostnames
+in the same way.
+
+this app will only run on slave1
+(technically, any slave with a hostname ending in '1'):
+
+    curl -X PUT -H "Content-Type: application/json" http://localhost:8080/v2/apps/slave1-constraints -d@slave1-constraints.json
+
+whereas this one will only run on slaves with a hostname containing '2':
+
+    curl -X PUT -H "Content-Type: application/json" http://localhost:8080/v2/apps/slave2-constraints -d@slave2-constraints.json
+
 # disk isolation
 
 marathon supports a 'disk' field in app. json , but it's not passed
