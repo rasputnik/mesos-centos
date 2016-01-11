@@ -27,5 +27,5 @@ ansible_ssh_user=vagrant
 ansible_ssh_private_key_file=~/.vagrant.d/insecure_private_key
 
 # mesos settings
-mesos_rpm=mesos-0.22.1
+mesos_rpm=mesos-0.21.0
 mesos_interface=ansible_eth1

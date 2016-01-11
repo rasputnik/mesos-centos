@@ -4,7 +4,7 @@ Mesos cluster
 CentOS 6 based Mesos cluster. Intended to be a clean baseline
 for framework testing.
 
-Currently 0.22.1 with docker bridged networking support
+Currently 0.21.0 with docker bridged networking support
 (see examples/marathon/ for details on using it).
 
 See frameworks/ for some ways to run frameworks against this stack.
