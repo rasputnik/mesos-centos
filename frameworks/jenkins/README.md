@@ -1,5 +1,9 @@
 
-    # checkout a version that matches our mesos slaves
+This readme assumes you already have the Vagrant mesos stack VMs running on your Mac.
+
+# install Jenkins on your Mac
+
+    # checkout a version that matches your mesos VMs
     # (see inventory)
     brew install mesos
 
@@ -11,7 +15,7 @@
 Once it downloads the internet, it'll
 spin up a jenkins on http://localhost:8080/jenkins/
 
-# add a git plugin
+# add git plugin to master
 
 although we won't be checking out code to the master,
 we want to be able to build a git project.
@@ -21,15 +25,17 @@ open http://localhost:8080/jenkins/pluginManager/
 click 'available' tag and type 'git' into the filter.
 You want the one called just 'Git Plugin'.
 
-install and bounce jenkins.
+install the plugin and bounce jenkins.
 
 # prep a docker image
 
-Since the slaves have no maven/git/jdk, we'll use a docker
-container to run builds.
+The slaves have no maven/git/jdk, but since our builds are running in a docker
+container that's not a problem. We'll just craft an image with our requirements in it.
 
-I'm also too lazy to run a registry so let's just build the 
-image on each slave. See Dockerfile :
+In production, you'd be using a Docker registry and have Mesos pull images down
+at runtime when Jenkins requests them. For simplicity, let's build the image on each slave.
+
+This Dockerfile will be enough for us:
 
     #------------------8<------------------
     FROM mesosphere/spark:1.4.1-hdfs
@@ -39,9 +45,11 @@ image on each slave. See Dockerfile :
     
     #------------------8<------------------
 
-copy this to each slave, then build with:
+_(NB: the 'mesosphere/spark1.4.1-hdfs' image is pretty big, but I already have it from the Spark example)_
 
-    docker build -t janky .
+Copy this Dockerfile to each slave, then build with:
+
+    sudo docker build -t janky .
 
 # set up mesos plugin
 
@@ -93,7 +101,7 @@ Jenkins has created you a slave info subconfig, let's tweak that.
 
 Click 'Advanced' (the one under the JNLP arguments box. told
 you jenkins UI was a bit wonky - these are advanced options for this
-particular slave task)
+particular slave task). The important part is 'Docker Image' which tells Jenkins which image to run builds in.
 
     Use Docker Containerizer:
         tick
@@ -158,6 +166,8 @@ the build should go through like any other.
   need it
 * jenkins kills off its mesos task
 * jenkins unregisters from mesos
+
+Check the sandbox stdout/stderr if you hit any issues.
 
 # different strokes for different folks
 
