@@ -24,9 +24,8 @@ Vagrant.configure("2") do |config|
   hosts.each do |host|
     config.vm.define host[:name] do |c|
 
-      # docker doesn't like older EL6 _at all_
-      c.vm.box = "box-cutter/centos66"
-      c.vm.box_version = "2.0.11"
+      c.vm.box = "box-cutter/centos72"
+      c.vm.box_version = "2.0.13"
 
       # stop Vagrant 'helping'
       c.ssh.insert_key = false
