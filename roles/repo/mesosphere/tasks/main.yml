@@ -1,7 +1,11 @@
 ---
 
 - name: mesosphere RPM repo
-  copy: src=.{{ item }} dest={{ item }} mode=0444
-  with_items:
-    - /etc/pki/rpm-gpg/RPM-GPG-KEY-mesosphere
-    - /etc/yum.repos.d/mesosphere.repo
+  template: src=etc/yum.repos.d/mesosphere.repo.j2
+            dest=/etc/yum.repos.d/mesosphere.repo
+            mode=0444 owner=root group=root
+
+- name: mesosphere RPM GPG key
+  copy: src=etc/pki/rpm-gpg/RPM-GPG-KEY-mesosphere
+        dest=/etc/pki/rpm-gpg/RPM-GPG-KEY-mesosphere
+        mode=0444 owner=root group=root

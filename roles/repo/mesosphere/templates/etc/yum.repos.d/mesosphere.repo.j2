@@ -1,0 +1,20 @@
+[mesosphere]
+name=Mesosphere Packages for EL {{ ansible_distribution_major_version }} - $basearch
+baseurl=http://repos.mesosphere.io/el/{{ ansible_distribution_major_version }}/$basearch/
+enabled=1
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mesosphere
+
+[mesosphere-noarch]
+name=Mesosphere Packages for EL {{ ansible_distribution_major_version }} - noarch
+baseurl=http://repos.mesosphere.io/el/{{ ansible_distribution_major_version }}/noarch/
+enabled=1
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mesosphere
+
+[mesosphere-source]
+name=Mesosphere Packages for EL {{ ansible_distribution_major_version }} - $basearch - Source
+baseurl=http://repos.mesosphere.io/el/{{ ansible_distribution_major_version }}/SRPMS/
+enabled=0
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mesosphere
