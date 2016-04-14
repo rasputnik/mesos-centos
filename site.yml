@@ -7,7 +7,6 @@
   sudo: yes
   roles:
     - repo/mesosphere
-    - mesos/common
     - mesos/master
 - hosts: slaves
   sudo: yes
