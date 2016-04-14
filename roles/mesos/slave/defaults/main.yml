@@ -1,0 +1,8 @@
+mesos_isolation: cgroups/cpu,cgroups/mem
+
+# quote booleans, or Ansible gets annoyed
+mesos_switch_user: "false"
+# CFS = 'hard limits'. if off, it's burstable
+mesos_cgroups_enable_cfs: "false"
+
+mesos_containerizers: "docker,mesos"
