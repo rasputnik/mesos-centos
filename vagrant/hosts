@@ -15,7 +15,7 @@ slaves
 
 [mesos:vars]
 mesos_zk_group=zookeepers
-mesos_rpm=mesos-0.22.1
+mesos_rpm=mesos-0.28.1
 mesos_interface=ansible_enp0s8
 mesos_work_dir=/var/mesos
 
