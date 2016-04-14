@@ -6,14 +6,3 @@
 
 - name: mesos work dir
   file: path={{ mesos_work_dir }} state=directory
-
-- name: common config (logdir, ip, ulimit)
-  template: src=etc/default/mesos.j2
-            dest=/etc/default/mesos
-            mode=0444
-  notify: bounce mesos
-
-- name: setup zookeeper config
-  template: src=etc/mesos/zk.j2 dest=/etc/mesos/zk
-            mode=0444
-  notify: bounce mesos

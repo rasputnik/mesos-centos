@@ -1,15 +1,16 @@
-
 - name: configure master
   template: src=.{{ item }}.j2  dest={{ item }}
-            mode=0444
+            mode=0444 owner=root group=root
   with_items:
+    - /etc/default/mesos
+    - /etc/mesos/zk
     - /etc/mesos-master/work_dir
     - /etc/mesos-master/quorum
     - /etc/mesos-master/registry
-  notify: bounce mesos
+  notify: bounce mesos master
 
-- name: mesos master service
+- name: enable mesos master service
   service: name=mesos-master state=running enabled=yes
 
-- name: lose mesos-slave upstart script
-  file: name=/etc/init/mesos-slave.conf state=absent
+- name: disable mesos slave service
+  service: name=mesos-slave state=stopped enabled=no

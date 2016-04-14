@@ -1,2 +1,2 @@
-- name: bounce mesos
+- name: bounce mesos master
   service: name=mesos-master state=restarted
