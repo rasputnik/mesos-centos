@@ -1,3 +1,6 @@
+
+** NOTE: this is no longer maintained, master now based on EL7 **
+
 Mesos cluster
 =============
 
