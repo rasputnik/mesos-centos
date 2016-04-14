@@ -1,5 +1,10 @@
 ---
 
+- name: add Docker repo
+  copy: src=etc/yum.repos.d/docker.repo
+        dest=/etc/yum.repos.d/docker.repo
+        mode=0444
+
 - name: install {{ docker_rpm }}
   yum: name={{ docker_rpm }}
   notify: bounce docker

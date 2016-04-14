@@ -1,4 +1,0 @@
-- name: add Docker repo
-  copy: src=etc/yum.repos.d/docker.repo
-        dest=/etc/yum.repos.d/docker.repo
-        mode=0444
