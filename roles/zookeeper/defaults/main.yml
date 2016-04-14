@@ -1,15 +1,3 @@
 ---
 
-zk_user: zookeeper
 zk_max_clients: 1024
-
-zk_quorum_port: 2888
-zk_election_port: 3888
-
-# use half system RAM by default
-zk_heap_mbs: "{{ ( ansible_memtotal_mb / 2 )|int }}"
-zk_extra_jvmflags: -server -Xms{{ zk_heap_mbs }}m -Xmx{{ zk_heap_mbs }}m
-
-#zk_logdir: /var/log/zookeeper
-#zk_gclog: "{{zk_logdir}}/gc.log"
-#zk_gclogopts: -XX:+PrintGCDateStamps -XX:+PrintGCDetails -Xloggc:{{zk_gclog}}

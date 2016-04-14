@@ -1,23 +1,13 @@
 ---
 
-- name: add cloudera-cdh5 repo
-  get_url: url=http://archive.cloudera.com/cdh5/redhat/5/x86_64/cdh/cloudera-cdh5.repo
-           dest=/etc/yum.repos.d/cloudera-cdh5.repo
-           mode=0444
-
-- name: install zookeeper server
-  yum: state=present name=zookeeper-server
+- name: install mesosphere-zookeeper
+  yum: state=present name=mesosphere-zookeeper
 
 - name: configure zookeeper
-  template: src={{item}}.j2 dest=/{{item}} mode=0444
-  with_items:
-     - etc/zookeeper/conf/zoo.cfg
-     - etc/zookeeper/conf/java.env
+  template: src=etc/zookeeper/conf/zoo.cfg.j2
+            dest=/etc/zookeeper/conf/zoo.cfg
+            mode=0444 owner=root group=root
   notify: bounce zookeeper
 
-- name: initialize zookeeper
-  command: su {{ zk_user }} -mc /usr/bin/zookeeper-server-initialize
-           creates=/var/lib/zookeeper/version-2
-
 - name: start zookeeper
-  service: name=zookeeper-server state=started enabled=yes
+  service: name=zookeeper state=started enabled=yes
