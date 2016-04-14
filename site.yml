@@ -6,16 +6,16 @@
 - hosts: masters
   sudo: yes
   roles:
-    - log/sink
-    - mesos/master
-
+    - repo/mesosphere
+##     - mesos/master
 - hosts: slaves
   sudo: yes
   roles:
-    - log/fwd
-    - mesos/slave
-
+    - repo/mesosphere
+##     - mesos/slave
 - hosts: zookeepers
   sudo: yes
   roles:
-    - zookeeper
+    - java8
+    - repo/mesosphere
+##     - zookeeper
