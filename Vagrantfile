@@ -1,6 +1,8 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+Vagrant.require_version ">= 1.8.0"
+
 ## if you change these, change vagrant/hosts too
 #
 # would _dearly_ love to make this less clunkable,
@@ -36,6 +38,7 @@ Vagrant.configure("2") do |config|
 
       c.vm.provider("virtualbox") do |vb|
         vb.memory = host[:ram]
+        vb.linked_clone = true
       end
 
       # turn off shared folder
