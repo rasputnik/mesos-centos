@@ -12,7 +12,9 @@ This readme assumes you already have the Vagrant mesos stack VMs running on your
     mvn hpi:run
 
 Once it downloads the internet, it'll
-spin up a jenkins on http://localhost:8080/jenkins/
+spin up a jenkins locally
+
+    open http://localhost:8080/jenkins/
 
 # add git plugin to master
 
@@ -37,8 +39,9 @@ put one up as 'rasputnik/mvn3:v1' _(Dockerfiles are in this folder_).
 
 # set up mesos plugin
 
-go to http://localhost:8080/jenkins/configure , and at the 
-bottom you'll see 'add a new cloud' dropdown. choose 'Mesos Cloud'.
+    open http://localhost:8080/jenkins/configure
+
+at the bottom you'll see 'add a new cloud' dropdown. choose 'Mesos Cloud'.
 
     Mesos native library path :
         /usr/local/Cellar/mesos/0.28.0/lib/libmesos.dylib
@@ -48,11 +51,12 @@ bottom you'll see 'add a new cloud' dropdown. choose 'Mesos Cloud'.
         ( find master via zookeeper )
     Description :
         test mesos cluster
-    Framework principal :
-        blank it out
+    Slave username :
+        root
+        ( what user to run the mesos tasks as )
     Jenkins URL:
         http://10.0.0.1:8080/jenkins
-        (a URL the slave can reach on its subnet):
+        (URL should be reachable from the slaves i.e. in the host-only subnets)
 
 save/apply now (the jenkins ui is pretty hideous and renders
 badly, save as you go). you should see a zookeeper connection
@@ -62,8 +66,12 @@ Click 'Advanced' (directly under the Jenkins URL box):
 
     Checkpointing:
         yes
+    (mesos frameworks should always checkpoint)
     On-demand framework registration
         yes
+    (this only connects to mesos when there's work to do. 
+     It means you won't see jenkins in the mesos ui when it's not building,
+     but makes it play nicer with other frameworks if its running 'hungry' jobs)
 
 That's it for the actual mesos connectivity settings.
 
@@ -110,7 +118,7 @@ call it 'game-of-life', 'freestyle software project' -> ok.
     Source Code Management:
        git
     Repository URL:
-        https://github.com/rasputnik/game-of-life.git
+        https://github.com/{your-github}/game-of-life.git
         (don't use 'git://' urls, proxies tend to not like them)
 
 
