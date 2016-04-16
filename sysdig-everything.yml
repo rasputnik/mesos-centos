@@ -6,4 +6,6 @@
 - hosts: all
   sudo: yes
   roles:
+    - repo/draios
+    - repo/epel7
     - sysdig

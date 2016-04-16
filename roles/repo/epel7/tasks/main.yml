@@ -1,0 +1,4 @@
+- name: add EPEL7 repo
+  copy: src=etc/yum.repos.d/epel7.repo
+        dest=/etc/yum.repos.d/epel7.repo
+        mode=0444
