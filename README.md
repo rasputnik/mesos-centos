@@ -4,8 +4,8 @@ Mesos cluster
 CentOS 7 based Mesos cluster. Intended to be a clean baseline
 for framework testing.
 
-Currently 0.22.1 with docker bridged networking support
-(see examples/marathon/ for details on using it).
+Currently 0.28.1 with docker support and cgroups isolation
+(see roles/mesos/{slave,master}/defaults for various tunings).
 
 See frameworks/ for some ways to run frameworks against this stack.
 
