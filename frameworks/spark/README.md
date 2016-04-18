@@ -5,7 +5,7 @@ Run a mac Spark on the VM Mesos cluster.
     # ideally same as cluster version (see mesos_rpm in inventory)
     brew install mesos
 
-    export VER=1.4.1
+    export VER=1.6.1
 
     # no need for HDFS on this stack, but hadoop libs are needed
     # for some basic operations
@@ -19,22 +19,25 @@ but that will need to happen each time you launch Spark.
 To use Docker, you need to add a 'spark.mesos.executor.docker.image' field to spark-defaults.conf
 (see sparkconf/ folder).
 
-Best version for our purposes is "mesosphere/spark:1.4.1-hdfs" 
+I've baked a simple image 'rasputnik/spark-1.6.1:v1':
 
-- actively maintained releases are tagged too
-- has the mesos lib in there which docs refer to as needed here and there
-- too lazy to make my own image
-- don't have to bother running a registry
-- faster task launching (once the slaves have it) vs. pulling the executor down
-- right versions (java 7 and spark 1.4.1)
+- alpine linux
+- openjdk8 with JAVA_HOME set
+- spark 1.6.1 with SPARK_HOME set
 
-Mesos will trigger a 'docker pull' when spark specifies the image, but this
+Several Spark docs say we should have libmesos in the container. I'm sure that's right, but
+
+- alpine doesn't use glibc so C++ building will be a nightmare
+- this is only a demo and the examples below work without it
+- the image is already getting a bit tubby
+
+Mesos will trigger a 'docker pull' when spark fires up, but this
 can take a few minutes (and cause spark to blacklist the slaves due to slow
 responses).
 
 Simplest fix is to pull the image before we start the spark shell:
 
-    ansible slaves -i ../../vagrant/ -s -a 'docker pull mesosphere/spark:1.4.1-hdfs'
+    ansible slaves -i ../../vagrant/ -s -a 'docker pull rasputnik/spark-1.6.1:v1'
 
 Once that comes back green (a good few minutes), we can actually launch a spark job.
 
@@ -54,7 +57,7 @@ This Scala code calculates pi by the 'throw darts and see what is within a circl
 Dial up NUM_SAMPLES for more accuracy (and longer run times, NUM_SAMPLES == a billion takes
 around 30 seconds for me):
 
-    var NUM_SAMPLES = 100
+    var NUM_SAMPLES = 10000
     
     var count = sc.parallelize(1 to NUM_SAMPLES).map{i =>
       val x = Math.random()
