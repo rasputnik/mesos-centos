@@ -4,8 +4,8 @@ Mesos cluster
 CentOS 7 based Mesos cluster. Intended to be a clean baseline
 for framework testing.
 
-Currently 0.22.1 with docker bridged networking support
-(see examples/marathon/ for details on using it).
+Currently 0.28.1 with docker support and cgroups isolation
+(see roles/mesos/{slave,master}/defaults for various tunings).
 
 See frameworks/ for some ways to run frameworks against this stack.
 
@@ -19,7 +19,7 @@ see Vagrantfile for precise version.
 * the centos base image above
 * Ansible on your host machine
 * Virtualbox on host machine (box has 4.3.28 extensions)
-* Vagrant 1.6.4 or better
+* Vagrant 1.8.x or better (for linked_clones)
 * a Vagrant plugin (see below)
 
 ## assumptions

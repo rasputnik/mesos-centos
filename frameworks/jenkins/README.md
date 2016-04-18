@@ -1,4 +1,3 @@
-
 This readme assumes you already have the Vagrant mesos stack VMs running on your Mac.
 
 # install Jenkins on your Mac
@@ -13,7 +12,9 @@ This readme assumes you already have the Vagrant mesos stack VMs running on your
     mvn hpi:run
 
 Once it downloads the internet, it'll
-spin up a jenkins on http://localhost:8080/jenkins/
+spin up a jenkins locally
+
+    open http://localhost:8080/jenkins/
 
 # add git plugin to master
 
@@ -29,46 +30,33 @@ install the plugin and bounce jenkins.
 
 # prep a docker image
 
-The slaves have no maven/git/jdk, but since our builds are running in a docker
-container that's not a problem. We'll just craft an image with our requirements in it.
+The slaves have no JDK, git or maven installation.
 
-In production, you'd be using a Docker registry and have Mesos pull images down
-at runtime when Jenkins requests them. For simplicity, let's build the image on each slave.
+Since our builds are running in a docker container that's not a problem.
 
-This Dockerfile will be enough for us:
-
-    #------------------8<------------------
-    FROM mesosphere/spark:1.4.1-hdfs
-    
-    RUN apt-get update
-    RUN apt-get install -y git maven
-    
-    #------------------8<------------------
-
-_(NB: the 'mesosphere/spark1.4.1-hdfs' image is pretty big, but I already have it from the Spark example)_
-
-Copy this Dockerfile to each slave, then build with:
-
-    sudo docker build -t janky .
+We'll just craft an image with our requirements in it. To save time I've 
+put one up as 'rasputnik/mvn3:v1' _(Dockerfiles are in this folder_).
 
 # set up mesos plugin
 
-go to http://localhost:8080/jenkins/configure , and at the 
-bottom you'll see 'add a new cloud' dropdown. choose 'Mesos Cloud'.
+    open http://localhost:8080/jenkins/configure
+
+at the bottom you'll see 'add a new cloud' dropdown. choose 'Mesos Cloud'.
 
     Mesos native library path :
-        /usr/local/Cellar/mesos/0.22.1/lib/libmesos.dylib
+        /usr/local/Cellar/mesos/0.28.0/lib/libmesos.dylib
         ( C++ shared lib for jenkins to talk to mesos)
     Mesos master :
         zk://master1:2181/mesos 
         ( find master via zookeeper )
     Description :
         test mesos cluster
-    Framework principal :
-        blank it out
+    Slave username :
+        root
+        ( what user to run the mesos tasks as )
     Jenkins URL:
         http://10.0.0.1:8080/jenkins
-        (a URL the slave can reach on its subnet):
+        (URL should be reachable from the slaves i.e. in the host-only subnets)
 
 save/apply now (the jenkins ui is pretty hideous and renders
 badly, save as you go). you should see a zookeeper connection
@@ -78,8 +66,12 @@ Click 'Advanced' (directly under the Jenkins URL box):
 
     Checkpointing:
         yes
+    (mesos frameworks should always checkpoint)
     On-demand framework registration
         yes
+    (this only connects to mesos when there's work to do. 
+     It means you won't see jenkins in the mesos ui when it's not building,
+     but makes it play nicer with other frameworks if its running 'hungry' jobs)
 
 That's it for the actual mesos connectivity settings.
 
@@ -106,7 +98,7 @@ particular slave task). The important part is 'Docker Image' which tells Jenkins
     Use Docker Containerizer:
         tick
     Docker Image:
-        janky
+        'rasputnik/mvn3:v1'
     Networking:
         host
 
@@ -126,7 +118,7 @@ call it 'game-of-life', 'freestyle software project' -> ok.
     Source Code Management:
        git
     Repository URL:
-        https://github.com/rasputnik/game-of-life.git
+        https://github.com/{your-github}/game-of-life.git
         (don't use 'git://' urls, proxies tend to not like them)
 
 
@@ -178,6 +170,3 @@ cloud -> mesos cloud -> 'advanced' -> 'add slave info'
 
 set whatever options you like, save it with a different label
 and you can assign builds to it as before. 
-
-
-

@@ -1,0 +1,10 @@
+FROM rasputnik/openjdk8:v1
+
+RUN apk add git
+
+RUN curl http://www.mirrorservice.org/sites/ftp.apache.org/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz | tar zxf -
+RUN mv apache-maven-3.3.9 /usr/lib/mvn
+
+ENV M2_HOME=/usr/lib/mvn
+ENV M2=$M2_HOME/bin
+ENV PATH $PATH:$M2

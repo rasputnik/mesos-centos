@@ -1,0 +1,6 @@
+FROM rasputnik/openjdk8:v1
+
+RUN apk add curl bash
+RUN curl http://d3kbcqa49mib13.cloudfront.net/spark-1.6.1-bin-hadoop2.6.tgz | tar zxf -
+
+ENV SPARK_HOME /spark-1.6.1-bin-hadoop2.6
