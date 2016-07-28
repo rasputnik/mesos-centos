@@ -35,7 +35,7 @@ The slaves have no JDK, git or maven installation.
 Since our builds are running in a docker container that's not a problem.
 
 We'll just craft an image with our requirements in it. To save time I've 
-put one up as 'rasputnik/mvn3:v1' _(Dockerfiles are in this folder_).
+put one up as 'rasputnik/mvn3:v1' _(Dockerfiles are in ../../dockerfiles/).
 
 # set up mesos plugin
 

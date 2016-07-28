@@ -25,11 +25,14 @@ I've baked a simple image 'rasputnik/spark-1.6.1:v1':
 - openjdk8 with JAVA_HOME set
 - spark 1.6.1 with SPARK_HOME set
 
+_(Dockerfile is in ../../dockerfiles/)
+
 Several Spark docs say we should have libmesos in the container. I'm sure that's right, but
 
 - alpine doesn't use glibc so C++ building will be a nightmare
 - this is only a demo and the examples below work without it
 - the image is already getting a bit tubby
+
 
 Mesos will trigger a 'docker pull' when spark fires up, but this
 can take a few minutes (and cause spark to blacklist the slaves due to slow
