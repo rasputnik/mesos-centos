@@ -17,7 +17,7 @@ see Vagrantfile for precise version.
 ## requirements
 
 * the centos base image above
-* Ansible on your host machine
+* Ansible (2.x) on your host machine
 * Virtualbox on host machine (box has 4.3.28 extensions)
 * Vagrant 1.8.x or better (for linked_clones)
 * a Vagrant plugin (see below)

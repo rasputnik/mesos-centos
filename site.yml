@@ -4,18 +4,18 @@
 # should be upgraded before slaves
 
 - hosts: masters
-  sudo: yes
+  become: yes
   roles:
     - repo/mesosphere
     - mesos/master
 - hosts: slaves
-  sudo: yes
+  become: yes
   roles:
     - repo/mesosphere
     - docker
     - mesos/slave
 - hosts: zookeepers
-  sudo: yes
+  become: yes
   roles:
     - java8
     - repo/mesosphere
