@@ -1,3 +1,5 @@
+- include: storage.yml
+
 - name: install mesos RPM
   yum: name={{ mesos_rpm }} state=present
   notify: bounce mesos slave

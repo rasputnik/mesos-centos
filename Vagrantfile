@@ -9,9 +9,9 @@ Vagrant.require_version ">= 1.8.0"
 # and just read vagrant/hosts directly.
 
 hosts = [
-  {:name => "master1", :ip => "10.0.0.111",   :ram => 1024},
-  {:name => "slave1",  :ip => "10.0.0.112",   :ram => 1900},
-  {:name => "slave2",  :ip => "10.0.0.113",   :ram => 1900},
+  {:name => "master1", :ip => "10.0.0.111", :ram => 1024},
+  {:name => "slave1",  :ip => "10.0.0.112", :ram => 1900, :mesos_storage => 4000},
+  {:name => "slave2",  :ip => "10.0.0.113", :ram => 1900, :mesos_storage => 4000},
 ]
 
 Vagrant.configure("2") do |config|
@@ -39,6 +39,15 @@ Vagrant.configure("2") do |config|
       c.vm.provider("virtualbox") do |vb|
         vb.memory = host[:ram]
         vb.linked_clone = true
+      end
+
+      # add a dedicated device for mesos to use
+      # - let Ansible format and mount it
+      if host[:mesos_storage] 
+        c.persistent_storage.location = "disks/extra#{host[:name]}.vdi"
+        c.persistent_storage.enabled = true
+        c.persistent_storage.manage = false
+        c.persistent_storage.size = host[:mesos_storage]
       end
 
       # turn off shared folder
