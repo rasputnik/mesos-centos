@@ -1,4 +1,5 @@
 .vagrant/
+disks/
 callback_plugins/*.pyc
 ansible.cfg
 frameworks/marathon/marathon-*

@@ -1,0 +1,12 @@
+---
+# mount up mesos_block_dev to mesos_work_dir
+# as xfs with quota
+#
+
+- name: format {{ mesos_blockdev }}
+  filesystem: fstype=xfs dev={{ mesos_block_dev }}
+
+- name: mount {{ mesos_blockdev }} at {{ mesos_work_dir }}
+  mount: name={{ mesos_work_dir }} src={{ mesos_block_dev }} fstype=xfs state=mounted
+         opts="defaults,pquota"
+

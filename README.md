@@ -20,7 +20,7 @@ see Vagrantfile for precise version.
 * Ansible (2.x) on your host machine
 * Virtualbox on host machine (box has 4.3.28 extensions)
 * Vagrant 1.8.x or better (for linked_clones)
-* a Vagrant plugin (see below)
+* 2 Vagrant plugins (see below)
 
 ## assumptions
 
@@ -35,17 +35,43 @@ in there need to match your Vagrantfile.
 
 _(NB: you won't get a lot of RAM offered by the slaves. Mesos > 0.20.0 reserves 1Gb or half system RAM for the OS)_
 
-We'll need name resolution, and /etc/hosts is nice and simple.
+
+### name resolution
+
+we'll use a Vagrant plugin to ensure all nodes (and our host) can resolve each others names.
 
 The [hostmanager plugin](https://github.com/smdahlen/vagrant-hostmanager) will auto-manage that.
 
     vagrant plugin install vagrant-hostmanager
 
-Then
+### dedicated storage for /var/mesos on the slaves
+
+This should stop slaves being taken out when sandboxes overflow, and also allow some custom
+mount options _(see Vagrantfile for detail)_. the storage attaches at /dev/sdb
+
+    vagrant plugin install vagrant-persistent-storage
+
+Disks live under disks/ at the top of this repo. 
+
+### do the thing
 
     vagrant up
 
-_NB: this will also (try to) edit your local /etc/hosts_
+_NB: hostmanager will (try to) edit your local /etc/hosts_
+
+### wiping 
+
+If you want to blow everything away, this should do the trick:
+
+    vagrant destroy -f
+    for i in master1 slave1 slave2
+      do
+        ssh-keygen -R $i
+      done
+    # remove the disks via Virtualbox 'Virtual Media Manager'
+
+
+## time for Ansible
 
 run the main play with:
 
