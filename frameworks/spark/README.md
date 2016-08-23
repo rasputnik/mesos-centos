@@ -9,9 +9,10 @@ Run a mac Spark on the VM Mesos cluster.
 
     # no need for HDFS on this stack, but hadoop libs are needed
     # for some basic operations
-    curl -s http://d3kbcqa49mib13.cloudfront.net/spark-${VER}-bin-hadoop2.6.tgz | tar xzv -
+    [ -d spark-${VER}-bin-hadoop2.6 ] || \
+    ( curl -s http://d3kbcqa49mib13.cloudfront.net/spark-${VER}-bin-hadoop2.6.tgz | tar xzv )
 
-# dockerizinng executors
+# dockerizing executors
 
 We'll need a JVM on each slave, plus the spark distro. That can be downloaded on the fly,
 but that will need to happen each time you launch Spark.

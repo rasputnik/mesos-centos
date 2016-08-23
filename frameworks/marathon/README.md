@@ -11,7 +11,8 @@ get your tarball:
 
     export M_VER=1.1.0
 
-    curl -s http://downloads.mesosphere.io/marathon/v${M_VER}/marathon-${M_VER}.tgz | tar zxv
+    [ -d marathon-${M_VER} ] || \
+    ( curl -s http://downloads.mesosphere.io/marathon/v${M_VER}/marathon-${M_VER}.tgz | tar zxv )
 
     export LIBPROCESS_IP=10.0.0.1 ## mac IP on the host network
     export ZK=zk://master1:2181
