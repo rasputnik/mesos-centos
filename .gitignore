@@ -1,7 +1,5 @@
 .vagrant/
 disks/
-callback_plugins/*.pyc
-ansible.cfg
 frameworks/marathon/marathon-*
 frameworks/spark/spark-*
 frameworks/spark/derby.log
