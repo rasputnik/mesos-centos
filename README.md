@@ -1,3 +1,11 @@
+NOTE
+====
+
+I haven't maintained this for a couple of years now,
+Ansible has moved on a bit. 
+
+Also the base box will need an update.
+
 Mesos cluster
 =============
 
